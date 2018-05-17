@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cbec1ad-60c3-4f89-acac-f0e6243c1118" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/fourth_stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/1stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/fifith_stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/first_stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/3stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/second_stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4stage.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/5stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/third_stage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/6stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/sixth_stage.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fourth_stage.py" beforeDir="false" afterPath="$PROJECT_DIR$/fourth_stage.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -24,8 +17,8 @@
       <file leaf-file-name="fourth_stage.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/fourth_stage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+            <state relative-caret-position="290">
+              <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -33,8 +26,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="33" selection-start-column="33" selection-end-column="33" />
+            <state relative-caret-position="30">
+              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
             </state>
           </provider>
         </entry>
@@ -60,6 +53,7 @@
         <option value="$PROJECT_DIR$/6stage.py" />
         <option value="$PROJECT_DIR$/4stage.py" />
         <option value="$PROJECT_DIR$/1stage.py" />
+        <option value="$PROJECT_DIR$/fourth_stage.py" />
         <option value="$PROJECT_DIR$/main.py" />
       </list>
     </option>
@@ -109,7 +103,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.4stage">
+  <component name="RunManager" selected="Python.main">
     <configuration name="4stage" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Moon" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -152,8 +146,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.4stage" />
         <item itemvalue="Python.main" />
+        <item itemvalue="Python.4stage" />
       </list>
     </recent_temporary>
   </component>
@@ -174,13 +168,13 @@
     <frame x="0" y="23" width="1440" height="800" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.8838235" visible="true" weight="0.23960535" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.8304348" visible="true" weight="0.23960535" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32352942" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32352942" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" weight="0.32941177" />
-      <window_info id="Structure" order="1" sideWeight="0.11617647" side_tool="true" visible="true" weight="0.23960535" />
+      <window_info id="Structure" order="1" sideWeight="0.16956522" side_tool="true" visible="true" weight="0.23960535" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32941177" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
@@ -197,6 +191,20 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/fourth_stage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="33" selection-start-column="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fourth_stage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
@@ -353,15 +361,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" selection-start-column="33" selection-end-column="33" />
+        <state relative-caret-position="30">
+          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/fourth_stage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="18" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="18" />
+        <state relative-caret-position="290">
+          <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
         </state>
       </provider>
     </entry>
