@@ -1,1 +1,2 @@
-print(6)
+from fourth_stage import AllBlast
+AllBlast()
