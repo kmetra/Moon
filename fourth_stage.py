@@ -15,6 +15,7 @@ Vy = 0
 
 points_of_speed=[]
 points_of_hight=[]
+points_of_coordinates=[]
 timeall = 0
 def blast_off(time, angle):
     '''
@@ -23,7 +24,7 @@ def blast_off(time, angle):
     :param angle: direction of the ship
     :return: chages in coordinates, speed, fuel mass
     '''
-    global x, y, Vx, Vy, m, M, points_of_speed, points_of_hight, timeall
+    global x, y, Vx, Vy, m, M, points_of_speed, points_of_hight, timeall, points_of_coordinates
     x = x + Vx * time - fuel_speed * cos(radians(angle)) * (
             (-(M + m) / fuel_exp + time) * log((m + M - fuel_exp * time) / (m + M)) - time)
     y = y + Vy * time - 0.5 * g_Moon * time ** 2 - fuel_speed * sin(radians(angle)) * (
@@ -35,6 +36,7 @@ def blast_off(time, angle):
     timeall+=time
     points_of_speed.append([sqrt(Vx**2+Vy**2),timeall])
     points_of_hight.append([high, timeall])
+    points_of_coordinates.append([x,y-R_Moon])
 def blast(x_start, y_start):
     '''
     summarizing all the steps of flight scenery
@@ -42,7 +44,7 @@ def blast(x_start, y_start):
     :param y_start: y starting coordinate
     :return:  list of [New orbital speed, Orbital hight]
     '''
-    global x, y, points_of_speed, points_of_hight, timeall
+    global x, y, points_of_speed, points_of_hight, points_of_coordinates, timeall
     timeall = 0
     x = x_start
     y = y_start
@@ -54,27 +56,39 @@ def blast(x_start, y_start):
         blast_off(8, 28 - i)
     Vres = sqrt(Vx ** 2 + Vy ** 2)
     Hres = sqrt(x ** 2 + y ** 2) - R_Moon
+
+
     plt.ion()  ## Note this correction
-    fig = plt.figure('Visualisation')
-    pylab.subplot(121)
-    plt.title(' Орбитальная скорость = 1598 м/с',size=10)
+    fig = plt.figure(figsize=(10,8))
+    pylab.subplot(131)
+    plt.title(' Орбитальная скорость 1598 м/с', size=8)
     plt.axis([0, 500, 0, 2500])
     plt.ylabel(u'Скорость Лунного модуля, м/с ')
     plt.xlabel(u'Время взлета, с')
-    pylab.subplot(122)
-    plt.title(' Высота орбиты = 50.3 км', size=10)
+
+
+    pylab.subplot(132)
+    plt.title(' Высота орбиты 50.3 км', size=8)
     plt.axis([0, 500, 0, 60])
-    plt.ylabel(u'Высота над поверхностью Луны, км ')
+    plt.ylabel(u'Высота над поверхностью, км ')
     plt.xlabel(u'Время взлета, с')
+
+    pylab.subplot(133)
+    plt.title(' Координаты Лунного модуля', size=8)
+    plt.axis([0, 500, 0, 60])
+    plt.ylabel(u'Координата y, км ')
+    plt.xlabel(u'Координата х, км')
     i = 0
     while i < 115:
-        pylab.subplot(121)
-        plt.scatter(points_of_speed[i][1], points_of_speed[i][0], color='red');
-        pylab.subplot(122)
+        pylab.subplot(131)
+        plt.scatter(points_of_speed[i][1], points_of_speed[i][0], color='r');
+        pylab.subplot(132)
         plt.scatter(points_of_hight[i][1], points_of_hight[i][0] / 1000, color='green');
+        pylab.subplot(133)
+        plt.scatter(points_of_coordinates[i][0]/1000, points_of_coordinates[i][1] / 1000, color='blue');
         i += 1;
         plt.pause(0.001)
-    plt.pause(4)
+    plt.pause(44)
     return (Vres, Hres)
 
 
