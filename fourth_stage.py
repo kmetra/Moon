@@ -1,4 +1,5 @@
 from math import cos, sin, log, radians, sqrt
+import sys
 import unittest
 import matplotlib.pyplot as plt
 import pylab
@@ -6,17 +7,19 @@ import pylab
 R_Moon = 1738000  # радиус Луны
 g_Moon = 1.62
 # определяем точку старта для взлета и начальные скорости
-M = 2355 #масса корабля и пилота
-m = 2355 #масса топлива на взлет
+M = 2355  # масса корабля и пилота
+m = 2355  # масса топлива на взлет
 fuel_exp = 5.1  # кг/с скорость корабля
 fuel_speed = 3050  # м/с скорость (относительная) испускания топлива
-Vx = 0 # скорость старта
-Vy = 0 # скорость посадки
+Vx = 0  # скорость старта
+Vy = 0  # скорость посадки
 
-points_of_speed=[] #  данные для построения скорости корабля от времени
-points_of_hight=[] # данные для построения высоты орбиты корабля от времени
-points_of_coordinates=[] # данные для построения координат корабля
+points_of_speed = []  #  данные для построения скорости корабля от времени
+points_of_hight = []  #  данные для построения высоты орбиты корабля от времени
+points_of_coordinates = []  # данные для построения координат корабля
 timeall = 0
+
+
 def blast_off(time, angle):
     '''
     function for simple step of flight,
@@ -35,10 +38,12 @@ def blast_off(time, angle):
     Vy = Vy - g_Moon * time - fuel_speed * sin(radians(angle)) * log((m + M - fuel_exp * time) / (m + M))
     m = m - fuel_exp * time
     high = sqrt(x ** 2 + y ** 2) - R_Moon
-    timeall+=time
-    points_of_speed.append([sqrt(Vx**2+Vy**2),timeall])
+    timeall += time
+    points_of_speed.append([sqrt(Vx ** 2 + Vy ** 2), timeall])
     points_of_hight.append([high, timeall])
-    points_of_coordinates.append([x,y-R_Moon])
+    points_of_coordinates.append([x, y - R_Moon])
+
+
 def blast(x_start, y_start):
     '''
     summarizing all the steps of flight scenery
@@ -50,18 +55,19 @@ def blast(x_start, y_start):
     timeall = 0
     x = x_start
     y = y_start
-    for i in range(1, 62): # подготовительный вертикальный взлет
+    for i in range(1, 62):  # подготовительный вертикальный взлет
         blast_off(1, 90 - i)
-    for i in range(1,28): # основной этап взлета
-        blast_off(5,28)
-    for i in range(1, 28): # выход на необходимую Лунную орбиту
+    for i in range(1, 28):  # основной этап взлета
+        blast_off(5, 28)
+    for i in range(1, 28):  # выход на необходимую Лунную орбиту
         blast_off(8, 28 - i)
     Vres = sqrt(Vx ** 2 + Vy ** 2)
     Hres = sqrt(x ** 2 + y ** 2) - R_Moon
-    visualisation(points_of_coordinates,points_of_hight,points_of_speed)
-    return (Vres, Hres, m) #  функция выдает необходимые для дальнейших тестов параметры
+    visualisation(points_of_coordinates, points_of_hight, points_of_speed)
+    return (Vres, Hres, m)  #  функция выдает необходимые для дальнейших тестов параметры
 
-def visualisation(pointsdots,pointshight,pointsspeed):
+
+def visualisation(pointsdots, pointshight, pointsspeed):
     plt.ion()  # начало построения визуализации
     fig = plt.figure(figsize=(10, 8))
     pylab.subplot(131)
@@ -94,12 +100,30 @@ def visualisation(pointsdots,pointshight,pointsspeed):
     plt.pause(4)
 
 
-# class TestBlastMethods(unittest.TestCase):
-#     def testresultsTrue(self):
-#         V_current, H_current, m_current=blast(0,R_Moon)
-#         self.assertTrue((1590 < V_current < 1650))
-#         self.assertTrue((49000 < H_current < 51000))
-#         self.assertTrue(m_current>=0)
+class TestBlastMethods(unittest.TestCase):
+    setup_done = False
+
+    def setUp(self):
+        global moonresults
+        if TestBlastMethods.setup_done:
+            return
+        moonresults = blast(0, R_Moon)
+        TestBlastMethods.setup_done = True
+
+    def test_speed(self):
+        global moonresults
+        self.assertTrue(1650 > moonresults[0] > 1590)
+        print('Speed test is OK')
+
+    def test_hight(self):
+        global moonresults
+        self.assertTrue(51000 > moonresults[1] > 49000)
+        print('Hight test is OK')
+
+    def test_mass(self):
+        global moonresults
+        self.assertTrue(moonresults[2] > 0)
+        print(' Fuel mass test is OK')
 
 
 if __name__ == '__main__':
