@@ -1,5 +1,6 @@
 import math
-
+import matplotlib.pyplot as plt
+import pylab
 telemetry = open('telemetry.txt', 'w')
 telemetry.write('T, R, w, alfa, M, Fvert, Fhor , Vvert, Vhor, av, ah\n')
 telemetry.close()
@@ -16,6 +17,10 @@ def m(module):
         return mLK
     if (module == 'LM'):
         return mLM
+x=[]
+y=[]
+
+i = 0
 def angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor):
     H = R / 1000 - 6375
     dm=0
@@ -124,10 +129,13 @@ Fcopr = 0.0
 x11111= True
 x22222 = True
 x33333 = True
+plot = open('plot.txt', 'w')
+plot.close()
 while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
     T = T + 1
     telemetry = open('telemetry.txt', 'a')
     Fdv = 0
+    plot = open('plot.txt', 'a')
     if mRN_1 > 0: #рассчет тяги
         Fdv = 34350000
         mRN_1 = mRN_1 - 34350000 / 2580
@@ -178,9 +186,21 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
     s1 = str(T) + '    H=' + str(R / 1000 - 6375) + "   w=" + str(w) + '  alfa=' + str(round(alfa/(math.pi / 180))) + '   M=' + str(
         M) + '     Fv=' + str(Fvert) + '   Fh=' + str(Fhor) + '   Vv=' + str(Vv) + '   Vh=' + str(Vh) + '  av=' + str(
         av) + '     ah=' + str(ah) + '  Fcb=' + str(Fcb) + "  Ft=" + str(Ft) + '  Fdv=' + str(Fdv * math.cos(alfa)) + '\n'
+    plot.write(str(T) + ' ' + str(R / 1000 - 6375) +'\n')
+    x.append(T)
+    y.append(Vv)
     telemetry.write(s1)
     telemetry.close()
     alfa = alfa + angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor)
 
+plot.close()
+
+stromn1 = open('plot.txt', 'r')
+s = stromn1.read()
+mv1 = s.split('\n')
+for i in range(0, len(mv1)):
+    mv1[i].split(' ')
+g1 = plt.plot(x, y)
+plt.show(g1)
 telemetry.write(str(mRN_2)+'\n')
 print(GM)
