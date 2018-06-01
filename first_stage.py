@@ -188,7 +188,7 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
         av) + '     ah=' + str(ah) + '  Fcb=' + str(Fcb) + "  Ft=" + str(Ft) + '  Fdv=' + str(Fdv * math.cos(alfa)) + '\n'
     plot.write(str(T) + ' ' + str(R / 1000 - 6375) +'\n')
     x.append(T)
-    y.append(Vv)
+    y.append(R/1000-6375)
     telemetry.write(s1)
     telemetry.close()
     alfa = alfa + angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor)
