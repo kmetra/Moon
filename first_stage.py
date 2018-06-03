@@ -107,7 +107,7 @@ mRN_1 = 2145000 - ms1  # массы частей корабля
 mRN_2 = 458700 - ms2
 mRN_3 = 120000
 mLK = 5500 + 22500
-mLM = 150000
+mLM = 15000
 
 Rocket = ['RN_1', 'RN_2', 'RN_3', 'LK', 'LM']
 M = m('RN_1') + m('RN_2') + m('RN_3') + m('LK') + m('LM')
@@ -149,7 +149,7 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
         Rocket = Rocket[1:4]
         M = m('RN_1') + m('RN_2') + m('RN_3') + m('LK') + m('LM')
         if(mRN_2 >= 0 and x22222):
-            Fdv=6115000
+            Fdv=6645000
             mRN_2 = mRN_2-1238.5
         else:
             Fdv=0
@@ -178,7 +178,7 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
     Fhor = Fdv * math.sin(alfa) - math.pow(10.1 / 2, 2) * 0.1 * ro(R / 1000 - 6375) / 2 * math.sin(alfa)
     av = Fvert / M
     ah = Fhor / M
-    Vh = Vhi + 1.5*ah * 1
+    Vh = Vhi + 1*ah * 1
     Vv = Vvi + av * 1
     R = Ri + av * 1 * 1 / 2 + Vvi * 1
     w = wi + (Vh - 403) / R + ah * 1 * 1 / (2 * R)
@@ -188,7 +188,7 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
         av) + '     ah=' + str(ah) + '  Fcb=' + str(Fcb) + "  Ft=" + str(Ft) + '  Fdv=' + str(Fdv * math.cos(alfa)) + '\n'
     plot.write(str(T) + ' ' + str(R / 1000 - 6375) +'\n')
     x.append(T)
-    y.append(R/1000-6375)
+    y.append(R / 1000 - 6375)
     telemetry.write(s1)
     telemetry.close()
     alfa = alfa + angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor)
