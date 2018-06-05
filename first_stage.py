@@ -1,11 +1,22 @@
 import math
 import matplotlib.pyplot as plt
 import pylab
+import os
+import numpy as np
 telemetry = open('telemetry.txt', 'w')
 telemetry.write('T, R, w, alfa, M, Fvert, Fhor , Vvert, Vhor, av, ah\n')
 telemetry.close()
 
-
+joka = open('1-2.txt', 'w')
+joka.close()
+def save(name='', fmt='png'):
+    pwd = os.getcwd()
+    iPath = './pictures/{}'.format(fmt)
+    if not os.path.exists(iPath):
+        os.mkdir(iPath)
+    os.chdir(iPath)
+    plt.savefig('{}.{}'.format(name, fmt), fmt='png')
+    os.chdir(pwd)
 def m(module):
     if (module == 'RN_1'):
         return mRN_1 + ms1
@@ -19,7 +30,7 @@ def m(module):
         return mLM
 x=[]
 y=[]
-
+a=[]
 i = 0
 def angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor):
     H = R / 1000 - 6375
@@ -131,6 +142,9 @@ x22222 = True
 x33333 = True
 plot = open('plot.txt', 'w')
 plot.close()
+v=[]
+h=[]
+t=[]
 while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
     T = T + 1
     telemetry = open('telemetry.txt', 'a')
@@ -187,20 +201,57 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
         M) + '     Fv=' + str(Fvert) + '   Fh=' + str(Fhor) + '   Vv=' + str(Vv) + '   Vh=' + str(Vh) + '  av=' + str(
         av) + '     ah=' + str(ah) + '  Fcb=' + str(Fcb) + "  Ft=" + str(Ft) + '  Fdv=' + str(Fdv * math.cos(alfa)) + '\n'
     plot.write(str(T) + ' ' + str(R / 1000 - 6375) +'\n')
-    x.append(T)
-    y.append(R / 1000 - 6375)
+    x.append(R*math.cos(w))
+    y.append(R*math.sin(w))
+    v.append(Vv)
+    t.append(T)
+    h.append(R / 1000 - 6375)
+    a.append(round(alfa/(math.pi / 180)))
     telemetry.write(s1)
     telemetry.close()
     alfa = alfa + angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor)
-
+joka = open('1-2.txt', 'w')
+joka.write(str(M)+' '+str(R/1000-6375))
 plot.close()
 
 stromn1 = open('plot.txt', 'r')
 s = stromn1.read()
 mv1 = s.split('\n')
+x1=[]
+y1=[]
+for i in range(0, 360):
+    x1.append(6350000*math.sin(i/180*math.pi))
+    y1.append(6350000 * math.cos(i/180*math.pi))
+for i in range(0, 360):
+    x.append(R*math.cos(w+i/180*math.pi))
+    y.append(R* math.sin(w+i/180*math.pi))
 for i in range(0, len(mv1)):
     mv1[i].split(' ')
+plt.title('trajectory')
 g1 = plt.plot(x, y)
-plt.show(g1)
+g2 = plt.plot(x1, y1)
+plt.grid(True)
+g3 = g1 + g2
+plt.savefig(fname = 'trajectory', fmt='png')
+plt.show(g1+g2)
+plt.autoscale
+plt.grid(True)
+plt.title('h(t)')
+
+g1 = plt.plot(t, h)
+plt.savefig(fname = 'h(t)', fmt='png')
+plt.show()
+plt.title('v(t)')
+plt.grid(True)
+g1 = plt.plot(t, v)
+plt.savefig(fname = 'v(t)', fmt='png')
+plt.show()
+plt.title('alfa(t)')
+plt.grid(True)
+g1 = plt.plot(t, a)
+plt.savefig(fname = 'alfa(t)', fmt='png')
+plt.show()
+
+joka.close()
 telemetry.write(str(mRN_2)+'\n')
 print(GM)
