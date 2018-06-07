@@ -201,8 +201,8 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
         M) + '     Fv=' + str(Fvert) + '   Fh=' + str(Fhor) + '   Vv=' + str(Vv) + '   Vh=' + str(Vh) + '  av=' + str(
         av) + '     ah=' + str(ah) + '  Fcb=' + str(Fcb) + "  Ft=" + str(Ft) + '  Fdv=' + str(Fdv * math.cos(alfa)) + '\n'
     plot.write(str(T) + ' ' + str(R / 1000 - 6375) +'\n')
-    x.append(R*math.cos(w))
-    y.append(R*math.sin(w))
+    x.append(R*math.cos(w)/1000)
+    y.append(R*math.sin(w)/1000)
     v.append(Vv)
     t.append(T)
     h.append(R / 1000 - 6375)
@@ -210,6 +210,8 @@ while R <= (6375 + 1000) * 1000 and w <= math.sqrt(GM / ((6375 + 185) * 1000)):
     telemetry.write(s1)
     telemetry.close()
     alfa = alfa + angle(alfa, R, Vv, Vh, T, Fdv, Fcb, Ft, av, ah, M, Fhor)
+M = m('RN_3') + m('LK') + m('LM')
+
 joka = open('1-2.txt', 'w')
 joka.write(str(M)+' '+str(R/1000-6375))
 plot.close()
@@ -220,13 +222,16 @@ mv1 = s.split('\n')
 x1=[]
 y1=[]
 for i in range(0, 360):
-    x1.append(6350000*math.sin(i/180*math.pi))
-    y1.append(6350000 * math.cos(i/180*math.pi))
+    x1.append(6350*math.sin(i/180*math.pi))
+    y1.append(6350 * math.cos(i/180*math.pi))
 for i in range(0, 360):
-    x.append(R*math.cos(w+i/180*math.pi))
-    y.append(R* math.sin(w+i/180*math.pi))
+    x.append(R*math.cos(w+i/180*math.pi)/1000)
+    y.append(R* math.sin(w+i/180*math.pi)/1000)
 for i in range(0, len(mv1)):
     mv1[i].split(' ')
+fig = plt.figure(figsize=(9, 10))
+plt.ylabel(u'Y, км ')
+plt.xlabel(u'Х, км')
 plt.title('trajectory')
 g1 = plt.plot(x, y)
 g2 = plt.plot(x1, y1)
@@ -237,16 +242,21 @@ plt.show(g1+g2)
 plt.autoscale
 plt.grid(True)
 plt.title('h(t)')
-
+plt.ylabel(u'Высота, км ')
+plt.xlabel(u'Время, сек')
 g1 = plt.plot(t, h)
 plt.savefig(fname = 'h(t)', fmt='png')
 plt.show()
 plt.title('v(t)')
+plt.ylabel(u'Вертикальная скорость, м/с ')
+plt.xlabel(u'Время, с')
 plt.grid(True)
 g1 = plt.plot(t, v)
 plt.savefig(fname = 'v(t)', fmt='png')
 plt.show()
 plt.title('alfa(t)')
+plt.ylabel(u'Угол, градусы ')
+plt.xlabel(u'Время, с')
 plt.grid(True)
 g1 = plt.plot(t, a)
 plt.savefig(fname = 'alfa(t)', fmt='png')
