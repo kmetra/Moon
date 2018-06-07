@@ -8,4 +8,24 @@ fuel left = 664.077249604616
 Coordinates of moon ship on orbit:
 x = 541880.7849287261
 y = -1709157.1650743617
+time_of_the_stage = 5439.961999904492Coordinates landing:
+x = 1.5449116030436767
+y = -1738000.0000451335
+speed landing:
+v_x = -0.002517214919711809
+ v_y = -0.013299075984436196
+fuel left = 664.077249604616
+Coordinates of moon ship on orbit:
+x = 541880.7849287261
+y = -1709157.1650743617
+time_of_the_stage = 5439.961999904492Coordinates landing:
+x = 1.5449116030436767
+y = -1738000.0000451335
+speed landing:
+v_x = -0.002517214919711809
+ v_y = -0.013299075984436196
+fuel left = 664.077249604616
+Coordinates of moon ship on orbit:
+x = 541880.7849287261
+y = -1709157.1650743617
 time_of_the_stage = 5439.961999904492
